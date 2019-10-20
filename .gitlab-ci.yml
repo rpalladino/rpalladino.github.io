@@ -1,0 +1,10 @@
+stages:
+    - deploy
+
+deploy:
+    image: xueshanf/awscli:latest
+    stage: deploy
+    only:
+    - master
+    script:
+    - aws s3 sync public s3://roccopalladino.com
