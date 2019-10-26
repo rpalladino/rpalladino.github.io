@@ -39,3 +39,12 @@ resource "aws_s3_bucket_policy" "root" {
 }
 POLICY
 }
+
+resource "aws_s3_bucket" "www" {
+    bucket = "www.${var.root_domain_name}"
+    acl    = "public-read"
+
+    website {
+        redirect_all_requests_to = "roccopalladino.com"
+    }
+}
