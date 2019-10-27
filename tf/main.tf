@@ -7,6 +7,10 @@ variable "root_domain_name" {
     default = "roccopalladino.com"
 }
 
+resource "aws_route53_zone" "main" {
+    name = "${var.root_domain_name}"
+}
+
 resource "aws_s3_bucket" "root" {
     bucket = "${var.root_domain_name}"
     region = "us-west-2"
