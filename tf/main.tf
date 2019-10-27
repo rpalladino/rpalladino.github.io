@@ -49,7 +49,7 @@ resource "aws_s3_bucket" "www" {
     acl    = "public-read"
 
     website {
-        redirect_all_requests_to = "roccopalladino.com"
+        redirect_all_requests_to = "${var.root_domain_name}"
     }
 }
 
