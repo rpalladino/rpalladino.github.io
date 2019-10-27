@@ -48,3 +48,8 @@ resource "aws_s3_bucket" "www" {
         redirect_all_requests_to = "roccopalladino.com"
     }
 }
+
+resource "aws_s3_bucket" "logs" {
+    bucket = "logs.${var.root_domain_name}"
+    acl    = "private"
+}
