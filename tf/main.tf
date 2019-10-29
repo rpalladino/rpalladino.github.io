@@ -3,12 +3,25 @@ provider "aws" {
     region  = "us-west-2"
 }
 
+provider "aws" {
+    profile = "default"
+    region  = "us-east-1"
+    alias   = "us_east_1"
+}
+
 variable "root_domain_name" {
     default = "roccopalladino.com"
 }
 
 resource "aws_route53_zone" "main" {
     name = "${var.root_domain_name}"
+}
+
+resource "aws_acm_certificate" "cert" {
+    provider    = "aws.us_east_1"
+    domain_name = "${var.root_domain_name}"
+    subject_alternative_names = ["*.${var.root_domain_name}"]
+    validation_method = "DNS"
 }
 
 resource "aws_s3_bucket" "root" {
